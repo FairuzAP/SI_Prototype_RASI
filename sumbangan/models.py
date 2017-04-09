@@ -6,7 +6,7 @@ import datetime
 def bukti_transfer_directory_path(instance, filename):
     now = datetime.datetime.now().date()
     try:
-        nextid = PemberianSumbangan.objects.latest('id') + 1
+        nextid = (PemberianSumbangan.objects.latest('id')).id + 1
     except(PemberianSumbangan.DoesNotExist):
         nextid = 0
 
@@ -22,6 +22,11 @@ class PemberianSumbangan(models.Model):
     bukti_transfer = models.ImageField(upload_to=bukti_transfer_directory_path, max_length=500, blank=True)
     is_validated = models.BooleanField(default=False)
 
+    def delete(self, *args, **kwargs):
+        if self.bukti_transfer:
+            self.bukti_transfer.delete(save=True)
+        super(PemberianSumbangan, self).delete(*args, **kwargs)
+
     def __str__(self):
         return self.tanggal.__str__() +" by: "+ self.no_ktp +", "+ self.nama +" : "+ self.jumlah.__str__()
 
@@ -29,7 +34,7 @@ class PemberianSumbangan(models.Model):
 def alasan_directory_path(instance, filename):
     now = datetime.datetime.now().date()
     try:
-        nextid = PermintaanSumbangan.objects.latest('id') + 1
+        nextid = (PermintaanSumbangan.objects.latest('id')).id + 1
     except(PermintaanSumbangan.DoesNotExist):
         nextid = 0
 
@@ -45,6 +50,11 @@ class PermintaanSumbangan(models.Model):
     alasan = models.TextField(max_length=2500, blank=True)
     attachment = models.FileField(upload_to=alasan_directory_path, max_length=500, blank=True)
     is_validated = models.BooleanField(default=False)
+
+    def delete(self, *args, **kwargs):
+        if self.attachment:
+            self.attachment.delete(save=True)
+        super(PermintaanSumbangan, self).delete(*args, **kwargs)
 
     def __str__(self):
         return self.tanggal.__str__() +" by: "+ self.no_ktp +", "+ self.nama +" : "+ self.jumlah.__str__()

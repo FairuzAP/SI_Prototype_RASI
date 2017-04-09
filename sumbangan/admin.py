@@ -16,19 +16,24 @@ class PemberianAdmin(admin.ModelAdmin):
     info_orang.short_description = 'Penyumbang'
     info_orang.admin_order_field = 'no_ktp'
 
-    actions = ['validate_selected']
-
+    actions = ['validate_selected', 'delete_selected']
+    def delete_selected(self, request, obj):
+        for o in obj.all():
+            if o.bukti_transfer:
+                o.bukti_transfer.delete(save=True)
+            o.delete()
     def validate_selected(self, request, obj):
         for o in obj.all():
-            t = TransaksiSumbangan()
-            t.tanggal = o.tanggal
-            t.pemberian = o
-            t.permintaan = None
-            t.jumlah = o.jumlah
-            t.jenis = 'Pemberian'
-            t.save()
-            o.is_validated = True
-            o.save()
+            if o.is_validated == False:
+                t = TransaksiSumbangan()
+                t.tanggal = o.tanggal
+                t.pemberian = o
+                t.permintaan = None
+                t.jumlah = o.jumlah
+                t.jenis = 'Pemberian'
+                t.save()
+                o.is_validated = True
+                o.save()
     validate_selected.short_description = 'Validate selected transactions'
 admin.site.register(PemberianSumbangan, PemberianAdmin)
 
@@ -47,18 +52,24 @@ class PermintaanAdmin(admin.ModelAdmin):
     info_orang.short_description = 'Penyumbang'
     info_orang.admin_order_field = 'no_ktp'
 
-    actions = ['validate_selected']
+    actions = ['validate_selected', 'delete_selected']
+    def delete_selected(self, request, obj):
+        for o in obj.all():
+            if o.attachment:
+                o.attachment.delete(save=True)
+            o.delete()
     def validate_selected(self, request, obj):
         for o in obj.all():
-            t = TransaksiSumbangan()
-            t.tanggal = o.tanggal
-            t.pemberian = None
-            t.permintaan = o
-            t.jumlah = -o.jumlah
-            t.jenis = 'Permintaan'
-            t.save()
-            o.is_validated = True
-            o.save()
+            if o.is_validated == False:
+                t = TransaksiSumbangan()
+                t.tanggal = o.tanggal
+                t.pemberian = None
+                t.permintaan = o
+                t.jumlah = -o.jumlah
+                t.jenis = 'Permintaan'
+                t.save()
+                o.is_validated = True
+                o.save()
     validate_selected.short_description = 'Validate selected transactions'
 admin.site.register(PermintaanSumbangan, PermintaanAdmin)
 
@@ -67,9 +78,9 @@ class TransaksiAdmin(admin.ModelAdmin):
     date_hierarchy = 'tanggal'
 
     list_display = ('tanggal', 'info_orang', 'jumlah')
-    list_display_links = None
+    list_display_links = ('info_orang',)
     list_filter = ('jenis',)
-
+    list_display_links = None
     readonly_fields = ('tanggal', 'pemberian', 'permintaan', 'jumlah', 'jenis')
 
     def info_orang(self, obj):

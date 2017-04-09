@@ -4,5 +4,6 @@ from . import views
 app_name = 'sumbangan'
 
 urlpatterns = [
-
+    # /
+    url(r'^$', views.index, name='index'),
 ]
