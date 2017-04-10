@@ -3,14 +3,28 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+.formDonation {
+   color: black;
+}
+.donateMe {
+  background-color: #5cb6fd ;
+  min-height: 30px;
+  width: 100%;
+  color: #fff;
+}
+.rekapDana {
+  background-image: url('../img/rekapdanaBG.jpg');
+  height: 100%;
+}
 
  /* Bordered form */
 form {
-    border: 3px solid #f1f1f1;
+    border: 2px solid #f1f1f1;
+    padding: 4px;
 }
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -19,6 +33,85 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
+input[type=text].donate {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: white;
+    background-image: url('../img/rp.png');
+    background-position: 10px 7px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
+}
+
+input[type=radio] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+/*table,th,td,tr {
+  border: 1px solid black;
+}*/
+.tableDonate {
+    width: 50%;
+    text-align: left;
+}
+.tableCheckbox {
+    width: 80%;
+}
+.linksyarat {
+  color:  #035290;
+}
+.tableDonateMe{
+    width: 100%;
+    text-align: left;
+    color: black;
+    position: relative;
+}
+.rekapPcss {
+  color: #fff;
+  font-size: 40px;
+  margin: 25px 0 0 40px;
+  font-weight: bold;
+}
+.tableRekapDana {
+  width: 100%;
+  text-align: center;
+}
+.innerCelsRekapDana {
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+}
+.innerCelsNum {
+  background-color: #ecdabc;
+}
+.teksInnerCelsNum {
+  color: #7b6031;
+  font-size: 25px;
+  font-weight: bold;
+}
+.divSalurkan {
+  color: #ecdabc;
+  text-align: left;
+  font-size: 45px;
+  font-weight: bold;
+  margin-left: 40px;
+}
+.bgRASI {
+   background-image: url('../img/ra.png');
+   background-repeat: no-repeat;
+   margin-left: 15px;
+}
+.textfotokondisi {
+  color: #fff;
+  
+}
 /* Set a style for all buttons */
 button {
     background-color: #4CAF50;
@@ -56,7 +149,7 @@ img.avatar {
 
 /* Add padding to containers */
 .container {
-    padding: 16px;
+    padding: 10px;
 }
 
 /* The "Forgot password" text */
@@ -116,8 +209,8 @@ p {
   margin-bottom: 20px;
 }
 .bg-primary {
-  background-image: url('../img/bantu.jpg');
-  min-height: 300px;
+  background-color: #f54a25;
+  min-height: 30px;
   width: 100%;
 }
 .bg-dark {
@@ -128,7 +221,7 @@ p {
   color: rgba(255, 255, 255, 0.7);
 }
 section {
-  padding: 100px 0;
+  padding: 10px 0;
 }
 aside {
   padding: 50px 0;
