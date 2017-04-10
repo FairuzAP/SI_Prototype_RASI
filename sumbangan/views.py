@@ -9,7 +9,7 @@ def index(request):
     total_permintaan = TransaksiSumbangan.objects.filter(jenis='Permintaan').aggregate(Sum('jumlah')).get('jumlah__sum', 0.00)
     return render(request, 'index.html', {
         'total_pemberian' : total_pemberian,
-        'total_permintaan' : -total_permintaan
+        'total_permintaan' : total_permintaan
     })
 
 def beri(request):
