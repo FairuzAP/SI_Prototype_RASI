@@ -16,6 +16,16 @@
   background-image: url('../img/rekapdanaBG.jpg');
   height: 100%;
 }
+footer {
+  background-color:  #584119;
+  padding-top: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  height: 11%;
+  font-size: 12px;
+  width: 100%;
+  color: #886f45;
+}
 
  /* Bordered form */
 form {
@@ -111,6 +121,10 @@ input[type=radio] {
 .textfotokondisi {
   color: #fff;
   
+}
+.tableFooter {
+  width: 100%;
+  text-align: left;
 }
 /* Set a style for all buttons */
 button {
